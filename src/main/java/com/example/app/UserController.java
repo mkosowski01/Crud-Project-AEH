@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getById(@PathVariable("id") int id) {
+    public User getById(@PathVariable("id") Long id) {
         return userRepository.getById(id);
     }
 
@@ -30,9 +30,8 @@ public class UserController {
     public int add(@RequestBody List<User> users) {
         return userRepository.add(users);
     }
-    // TODO
     @PutMapping("/{id}")
-    public int update(@PathVariable("id") int id, @RequestBody User updatedUser) {
+    public int update(@PathVariable("id") Long id, @RequestBody User updatedUser) {
         User user = userRepository.getById(id);
 
         if (user != null) {
@@ -47,7 +46,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public int delete(@PathVariable("id") int id) {
+    public int delete(@PathVariable("id") Long id) {
         return userRepository.delete(id);
     }
 }
