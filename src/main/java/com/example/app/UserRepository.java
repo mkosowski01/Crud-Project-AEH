@@ -16,12 +16,12 @@ public class UserRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void createDb() {
+//    @EventListener(ApplicationReadyEvent.class)
+//    public void createDb() {
 //        jdbcTemplate.execute("DROP TABLE IF EXISTS user");
-        jdbcTemplate.execute("CREATE TABLE user (id int, name varchar(45), password varchar(45)");
-        log.info("Create table");
-    }
+//        jdbcTemplate.execute("CREATE TABLE user (id int, name varchar(45), password varchar(45)");
+//        log.info("Create table");
+//    }
 
     public List<User> getAll() {
         return jdbcTemplate.query("SELECT id, name, password FROM user",
@@ -36,8 +36,7 @@ public class UserRepository {
     public int add(List<User> users) {
         users.forEach(user -> jdbcTemplate
                 .update("INSERT INTO user(name, password) VALUES(?, ?)",
-                        user.getName(), user.getPassword()
-                ));
+                        user.getName(), user.getPassword()));
         return 200;
     }
 
